@@ -14,10 +14,23 @@ def list_tasks():
             print('[X]', tasks[i]['name'])
         else:
             print( '[ ]',tasks[i]['name'])
+def delete_tasks(index):
+    del tasks[index]
+    if not tasks:
+        print("Lỗi: Danh sách công việc trống, không thể xóa.")
+        return
+    if 0 <= index < len(tasks):
+        deleted_task = tasks.pop(index)
+        print(f"Đã xóa công việc số {index}: '{deleted_task['name']}'")
+    else:
+        print(f"Lỗi: Chỉ số công việc '{index}' không hợp lệ. Vui lòng nhập số từ 1 đến {len(tasks)}.")
+
 # --- Điểm bắt đầu của chương trình ---
 if __name__ == "__main__":
     print("Chào mừng đến với ứng dụng To-Do List!")
     add_task("Học bài Git và GitHub")
     add_task("Làm bài tập thực hành ở nhà")
     complete_task(0)
+    delete_tasks(0)
     list_tasks()
+    
